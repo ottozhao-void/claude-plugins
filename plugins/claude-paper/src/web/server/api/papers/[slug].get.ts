@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import { homedir } from 'os'
+import type { ApiError } from '~/types/api'
 
 export default defineEventHandler((event) => {
   const slug = getRouterParam(event, 'slug')
@@ -29,12 +30,13 @@ export default defineEventHandler((event) => {
       slug,
       markdown
     }
-  } catch (e: any) {
-    if (e.statusCode) throw e
+  } catch (e) {
+    const err = e as ApiError
+    if (err.statusCode) throw e
 
     throw createError({
       statusCode: 500,
-      statusMessage: e.message || 'Failed to load paper'
+      statusMessage: err.message || 'Failed to load paper'
     })
   }
 })

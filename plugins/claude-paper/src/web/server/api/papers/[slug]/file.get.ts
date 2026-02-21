@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import { homedir } from 'os'
+import type { ApiError } from '~/types/api'
 
 function getFileType(filename: string): string {
   const ext = path.extname(filename).toLowerCase()
@@ -138,12 +139,13 @@ export default defineEventHandler((event) => {
       content,
       language: fileType === 'code' ? getLanguageFromExtension(filePath) : undefined
     }
-  } catch (e: any) {
-    if (e.statusCode) throw e
+  } catch (e) {
+    const err = e as ApiError
+    if (err.statusCode) throw e
 
     throw createError({
       statusCode: 500,
-      statusMessage: e.message || 'Failed to load file'
+      statusMessage: err.message || 'Failed to load file'
     })
   }
 })

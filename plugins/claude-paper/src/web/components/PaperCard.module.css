@@ -1,0 +1,86 @@
+/* PaperCard.module.css */
+
+.card {
+  display: block;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  background: white;
+  transition: box-shadow 0.2s, transform 0.2s;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  color: #1a202c;
+  line-height: 1.4;
+}
+
+.authors {
+  font-size: 0.9rem;
+  color: #718096;
+  margin: 0.25rem 0 0.75rem 0;
+}
+
+.abstract {
+  font-size: 0.9rem;
+  color: #4a5568;
+  margin: 0.75rem 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.5;
+}
+
+.codeLinks {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: #f7fafc;
+  border-radius: 6px;
+}
+
+.codeLinksTitle {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.85rem;
+  color: #4a5568;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.codeLinksList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.codeLinksItem {
+  margin: 0.5rem 0;
+}
+
+.codeLink {
+  color: #3182ce;
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.codeLink:hover {
+  text-decoration: underline;
+}
+
+.externalIcon {
+  font-size: 0.75em;
+  opacity: 0.7;
+}

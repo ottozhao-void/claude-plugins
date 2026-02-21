@@ -21,5 +21,34 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }
       ]
     }
-  }
+  },
+
+  // TypeScript configuration
+  typescript: {
+    strict: false,
+    typeCheck: false
+  },
+
+  // Vite configuration for TSX and CSS Modules
+  vite: {
+    css: {
+      modules: {
+        localsConvention: 'camelCase'
+      }
+    }
+  },
+
+  // Auto-imports configuration
+  imports: {
+    dirs: ['composables']
+  },
+
+  // Component auto-registration (including TSX)
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false,
+      extensions: ['.tsx', '.ts', '.vue']
+    }
+  ]
 })

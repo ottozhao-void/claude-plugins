@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import { homedir } from 'os'
+import type { ApiError } from '~/types/api'
 
 export default defineEventHandler(() => {
   try {
@@ -15,10 +16,11 @@ export default defineEventHandler(() => {
 
     // Handle both flat array and {papers: [...]} structure
     return Array.isArray(data) ? data : (data.papers || [])
-  } catch (e: any) {
+  } catch (e) {
+    const err = e as ApiError
     throw createError({
       statusCode: 500,
-      statusMessage: e.message || 'Failed to load papers'
+      statusMessage: err.message || 'Failed to load papers'
     })
   }
 })

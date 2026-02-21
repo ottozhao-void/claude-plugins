@@ -1,0 +1,61 @@
+/* FileTreeNode.module.css */
+
+.treeNode {
+  user-select: none;
+}
+
+.nodeContent {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+.nodeContent:hover {
+  background: #f8f9fa;
+}
+
+.nodeContent.selected {
+  background: #e5e7eb;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+.nodeContent.directory {
+  font-weight: 500;
+}
+
+.icon {
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  flex-shrink: 0;
+}
+
+.expandIcon {
+  color: #6b7280;
+  font-size: 0.625rem;
+}
+
+.fileIcon {
+  font-size: 1rem;
+}
+
+.nodeLabel {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.children {
+  padding-left: 1rem;
+  border-left: 1px solid #f8f9fa;
+  margin-left: 1rem;
+}

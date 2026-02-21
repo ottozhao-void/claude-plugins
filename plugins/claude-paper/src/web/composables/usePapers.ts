@@ -1,13 +1,5 @@
-export interface Paper {
-  title: string
-  slug: string
-  authors: string[]
-  abstract: string
-  githubLinks?: string[]
-  codeLinks?: string[]
-  url?: string
-  date?: string
-}
+import type { Paper } from '@/types/paper'
+import type { ApiError } from '@/types/api'
 
 export const usePapers = () => {
   const papers = ref<Paper[]>([])
@@ -22,7 +14,8 @@ export const usePapers = () => {
       const data = await $fetch<Paper[]>('/api/papers')
       papers.value = data
     } catch (e: any) {
-      error.value = e.message || 'Failed to load papers'
+      const err = e as ApiError
+      error.value = err.message || 'Failed to load papers'
       papers.value = []
     } finally {
       loading.value = false

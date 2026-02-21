@@ -1,0 +1,533 @@
+/* slug.module.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  min-height: 100vh;
+  background: #ffffff;
+  font-family: 'Inter', sans-serif;
+}
+
+.loadingState {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  color: #374151;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid #e5e7eb;
+  border-top-color: #6b7280;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.errorState {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  opacity: 0.6;
+}
+
+.errorState h2 {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.errorState p {
+  color: #6b7280;
+  margin: 0;
+}
+
+.backHome {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: #1f2937;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+.backHome:hover {
+  background: #111827;
+}
+
+.reader {
+  min-height: 100vh;
+}
+
+.topBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  gap: 2rem;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+.backToLibrary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #1f2937;
+  font-weight: 500;
+  white-space: nowrap;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+
+.backToLibrary:hover {
+  background: #f8f9fa;
+  color: #6b7280;
+}
+
+.backArrow {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.backText {
+  font-size: 0.95rem;
+}
+
+.paperTitleNav {
+  flex: 1;
+  overflow: hidden;
+}
+
+.paperTitleNav h1 {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.externalLink {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid #d1d5db;
+  color: #374151;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.externalLink:hover {
+  background: #f8f9fa;
+  border-color: #6b7280;
+}
+
+.arrow {
+  font-size: 0.75em;
+  opacity: 0.7;
+}
+
+.mainContent {
+  display: flex;
+  margin-top: 64px;
+  min-height: calc(100vh - 64px);
+}
+
+.sidebar {
+  width: 280px;
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  transition: width 0.3s ease;
+  position: sticky;
+  top: 64px;
+  height: calc(100vh - 64px);
+  align-self: flex-start;
+}
+
+.sidebar.collapsed {
+  width: 48px;
+}
+
+.sidebar.collapsed .fileTree {
+  display: none;
+}
+
+.sidebarInner {
+  height: 100%;
+  overflow-y: auto;
+  position: relative;
+}
+
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  background: #ffffff;
+}
+
+.sidebarHeader h3 {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.collapseBtn {
+  background: none;
+  border: none;
+  color: #6b7280;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.collapseBtn:hover {
+  color: #1f2937;
+}
+
+.expandBtn {
+  position: absolute;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  color: #6b7280;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  line-height: 1;
+  border-radius: 4px;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.expandBtn:hover {
+  background: #f8f9fa;
+  color: #1f2937;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.fileTree {
+  padding: 0.75rem 0;
+}
+
+.readingPane {
+  flex: 1;
+  background: #ffffff;
+  min-width: 0;
+}
+
+.readingHeader {
+  padding: 1.5rem 3rem;
+  border-bottom: 1px solid #e5e7eb;
+  background: #ffffff;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-family: 'Inter', monospace;
+}
+
+.crumb {
+  opacity: 0.7;
+}
+
+.fileName {
+  opacity: 1;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.separator {
+  opacity: 0.4;
+}
+
+.content {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 3rem;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fileLoading {
+  padding: 2rem;
+}
+
+.shimmer {
+  height: 400px;
+  background: linear-gradient(
+    90deg,
+    #f8f9fa 25%,
+    #e5e7eb 50%,
+    #f8f9fa 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.emptyState {
+  padding: 4rem 2rem;
+  text-align: center;
+  color: #9ca3af;
+}
+
+.imageViewer {
+  text-align: center;
+  padding: 2rem;
+}
+
+.imageViewer img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.pdfViewer {
+  height: calc(100vh - 200px);
+  min-height: 600px;
+}
+
+.pdfViewer iframe {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.codeViewer {
+  margin: 0;
+}
+
+.codeViewer pre {
+  margin: 0;
+  border-radius: 0;
+  max-height: calc(100vh - 200px);
+  overflow: auto;
+  background: #ffffff !important;
+  padding: 1.5rem;
+}
+
+.codeViewer code {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.markdownBody {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: #1f2937;
+}
+
+.markdownBody :global(h1),
+.markdownBody :global(h2),
+.markdownBody :global(h3),
+.markdownBody :global(h4) {
+  font-family: 'Crimson Pro', serif;
+  font-weight: 600;
+  color: #111827;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.markdownBody :global(h1) {
+  font-size: 2.25rem;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+  margin-top: 0;
+}
+
+.markdownBody :global(h2) {
+  font-size: 1.75rem;
+  border-bottom: 1px solid #f8f9fa;
+  padding-bottom: 0.4rem;
+}
+
+.markdownBody :global(h3) {
+  font-size: 1.375rem;
+}
+
+.markdownBody :global(h4) {
+  font-size: 1.125rem;
+}
+
+.markdownBody :global(p) {
+  margin-bottom: 1.5rem;
+}
+
+.markdownBody :global(a) {
+  color: #6b7280;
+  text-decoration: underline;
+  text-decoration-color: #d1d5db;
+  text-underline-offset: 2px;
+  transition: all 0.2s;
+}
+
+.markdownBody :global(a:hover) {
+  color: #374151;
+  text-decoration-color: #6b7280;
+}
+
+.markdownBody :global(code) {
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+  font-size: 0.8em;
+  background: #f8f9fa;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  border: 1px solid #e5e7eb;
+  color: #374151;
+}
+
+.markdownBody :global(pre) {
+  background: #111827;
+  color: #e5e7eb;
+  padding: 1.5rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border: 1px solid #1f2937;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.markdownBody :global(pre code) {
+  background: none;
+  border: none;
+  color: inherit;
+  padding: 0;
+  font-size: 0.875rem;
+}
+
+.markdownBody :global(blockquote) {
+  border-left: 4px solid #6b7280;
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  color: #374151;
+  font-style: italic;
+  background: #ffffff;
+  padding: 1rem 1.5rem;
+  border-radius: 0 6px 6px 0;
+}
+
+.markdownBody :global(ul),
+.markdownBody :global(ol) {
+  padding-left: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.markdownBody :global(li) {
+  margin-bottom: 0.5rem;
+}
+
+.markdownBody :global(img) {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 2rem 0;
+  box-shadow: 0 4px 12px rgba(61, 52, 48, 0.08);
+}
+
+.markdownBody :global(table) {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+
+.markdownBody :global(table th),
+.markdownBody :global(table td) {
+  border: 1px solid #e5e7eb;
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.markdownBody :global(table th) {
+  background: #ffffff;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.markdownBody :global(table td) {
+  background: #ffffff;
+}
+
+.markdownBody :global(hr) {
+  border: none;
+  height: 1px;
+  background: #e5e7eb;
+  margin: 3rem 0;
+}

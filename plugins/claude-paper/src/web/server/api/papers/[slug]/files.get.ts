@@ -1,13 +1,8 @@
 import fs from 'fs'
 import path from 'path'
 import { homedir } from 'os'
-
-interface FileNode {
-  name: string
-  path: string
-  type: 'file' | 'directory'
-  children?: FileNode[]
-}
+import type { FileNode } from '~/types/file'
+import type { ApiError } from '~/types/api'
 
 function buildFileTree(dirPath: string, relativePath: string = ''): FileNode[] {
   const items = fs.readdirSync(dirPath, { withFileTypes: true })
@@ -70,12 +65,13 @@ export default defineEventHandler((event) => {
     const fileTree = buildFileTree(paperDir)
 
     return fileTree
-  } catch (e: any) {
-    if (e.statusCode) throw e
+  } catch (e) {
+    const err = e as ApiError
+    if (err.statusCode) throw e
 
     throw createError({
       statusCode: 500,
-      statusMessage: e.message || 'Failed to load file tree'
+      statusMessage: err.message || 'Failed to load file tree'
     })
   }
 })
