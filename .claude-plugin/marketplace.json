@@ -3,7 +3,7 @@
   "name": "claude-paper",
   "description": "A plugin for studying research papers with automated material generation and code demonstrations",
   "owner": {
-    "name": "alaliqing"
+    "name": "ottozhao-void"
   },
   "plugins": [
     {
@@ -11,11 +11,11 @@
       "version": "1.0.0",
       "description": "A plugin for studying research papers with automated material generation, code demos, and a web viewer",
       "author": {
-        "name": "alaliqing"
+        "name": "ottozhao-void"
       },
       "category": "development",
-      "source": "./plugin",
-      "homepage": "https://github.com/alaliqing/claude-paper"
+      "source": "./plugins/claude-paper",
+      "homepage": "https://github.com/ottozhao-void/claude-plugins"
     }
   ]
 }
