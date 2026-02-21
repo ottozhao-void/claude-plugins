@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
 
-PAPERS_DIR="${HOME}/claude-papers"
+# Use CLAUDE_PAPERS_DIR environment variable if set, otherwise use ~/claude-papers
+PAPERS_DIR="${CLAUDE_PAPERS_DIR:-$HOME/claude-papers}"
 
 # Only create basic directory structure (fast)
 if [ ! -d "$PAPERS_DIR" ]; then

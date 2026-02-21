@@ -20,29 +20,30 @@ export const VSCodeButton = defineComponent<VSCodeButtonProps>({
     }
   },
   setup(props) {
-    const homedir = ref<string | null>(null)
+    const papersDir = ref<string | null>(null)
     const isLoading = ref(true)
     const error = ref<string | null>(null)
 
     onMounted(async () => {
       try {
-        const data = await $fetch<{ homedir: string }>('/api/system/homedir')
-        homedir.value = data.homedir
+        const data = await $fetch<{ papersDir: string }>('/api/system/homedir')
+        papersDir.value = data.papersDir
       } catch (e) {
-        error.value = 'Failed to get home directory'
-        console.error('Failed to get homedir:', e)
+        error.value = 'Failed to get papers directory'
+        console.error('Failed to get papersDir:', e)
       } finally {
         isLoading.value = false
       }
     })
 
     const openInVSCode = () => {
-      if (!homedir.value) {
-        alert('Unable to determine home directory')
+      if (!papersDir.value) {
+        alert('Unable to determine papers directory')
         return
       }
 
-      const expandedPath = props.path.replace('~', homedir.value)
+      // Replace papersDir path for VS Code URL
+      const expandedPath = props.path.replace('~', papersDir.value)
       window.location.href = `vscode://file${expandedPath}`
     }
 
@@ -50,7 +51,7 @@ export const VSCodeButton = defineComponent<VSCodeButtonProps>({
       <button
         class={styles.button}
         onClick={openInVSCode}
-        disabled={isLoading.value || !homedir.value}
+        disabled={isLoading.value || !papersDir.value}
         data-testid="vscode-button"
       >
         {isLoading.value ? '...' : 'Open in VS Code'}

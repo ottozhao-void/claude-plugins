@@ -1,7 +1,7 @@
-import { homedir } from 'os'
+import { getPapersDir } from '~/utils/config'
 
 export default defineEventHandler(() => {
   return {
-    homedir: homedir()
+    papersDir: getPapersDir()
   }
 })

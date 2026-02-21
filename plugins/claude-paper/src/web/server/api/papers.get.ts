@@ -1,11 +1,10 @@
 import fs from 'fs'
-import path from 'path'
-import { homedir } from 'os'
 import type { ApiError } from '~/types/api'
+import { getIndexJsonPath } from '~/utils/config'
 
 export default defineEventHandler(() => {
   try {
-    const indexPath = path.join(homedir(), 'claude-papers/index.json')
+    const indexPath = getIndexJsonPath()
 
     if (!fs.existsSync(indexPath)) {
       return []

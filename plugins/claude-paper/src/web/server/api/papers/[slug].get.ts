@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
-import { homedir } from 'os'
 import type { ApiError } from '~/types/api'
+import { getPaperDir } from '~/utils/config'
 
 export default defineEventHandler((event) => {
   const slug = getRouterParam(event, 'slug')
@@ -14,7 +14,7 @@ export default defineEventHandler((event) => {
   }
 
   try {
-    const paperDir = path.join(homedir(), 'claude-papers/papers', slug)
+    const paperDir = getPaperDir(slug)
     const readmePath = path.join(paperDir, 'README.md')
 
     if (!fs.existsSync(readmePath)) {

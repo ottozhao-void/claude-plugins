@@ -151,7 +151,7 @@ node skills/study/scripts/download-pdf.cjs https://arxiv.org/abs/1706.03762
 
 ### Paper Storage Structure
 
-Papers are stored in `~/claude-papers/papers/{paper-slug}/`:
+Papers are stored in `~/claude-papers/papers/{paper-slug}/` (default location):
 ```
 ~/claude-papers/
 ├── papers/{paper-slug}/
@@ -168,6 +168,8 @@ Papers are stored in `~/claude-papers/papers/{paper-slug}/`:
 └── index.json                 # Global search index
 ```
 
+**Custom Location**: Override via `CLAUDE_PAPERS_DIR` environment variable or create `.env.local` in the web directory.
+
 ### Content Truncation
 
 PDF content is truncated at 50,000 characters to prevent token issues. The parser (`parse-pdf.js`) handles this intelligently by preserving the most important content first.
@@ -179,16 +181,17 @@ The study skill automatically detects the user's language from their input and g
 ### Web Viewer API
 
 The Nuxt.js server provides these endpoints:
-- `GET /api/papers` - List all papers (reads `~/claude-papers/index.json`)
+- `GET /api/papers` - List all papers (reads `index.json`)
 - `GET /api/papers/{slug}` - Get paper README markdown
 - `GET /api/papers/{slug}/files` - List paper directory structure
 - `GET /api/papers/{slug}/file` - Get specific file content
-- `GET /api/system/homedir` - Get user's home directory
+- `GET /api/papers/{slug}/raw` - Get raw binary file (images, PDFs)
+- `GET /api/system/homedir` - Get papers directory path
 
 ### Hooks System
 
 Session start hooks (`hooks/hooks.json`) automatically:
-- Create `~/claude-papers/` directory structure
+- Create `~/claude-papers/` directory structure (or custom path via `CLAUDE_PAPERS_DIR`)
 - Initialize `index.json` with empty array
 - Verify installation status
 

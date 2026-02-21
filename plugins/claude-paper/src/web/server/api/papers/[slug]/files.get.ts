@@ -1,8 +1,8 @@
 import fs from 'fs'
 import path from 'path'
-import { homedir } from 'os'
 import type { FileNode } from '~/types/file'
 import type { ApiError } from '~/types/api'
+import { getPaperDir } from '~/utils/config'
 
 function buildFileTree(dirPath: string, relativePath: string = ''): FileNode[] {
   const items = fs.readdirSync(dirPath, { withFileTypes: true })
@@ -53,7 +53,7 @@ export default defineEventHandler((event) => {
   }
 
   try {
-    const paperDir = path.join(homedir(), 'claude-papers/papers', slug)
+    const paperDir = getPaperDir(slug)
 
     if (!fs.existsSync(paperDir)) {
       throw createError({

@@ -102,7 +102,7 @@ Opens the interactive web interface at **http://localhost:5815** where you can:
 
 ## Paper Storage Structure
 
-Papers are organized in `~/claude-papers/papers/{paper-slug}/`:
+Papers are organized in `~/claude-papers/papers/{paper-slug}/` (default, can be customized):
 
 ```
 ~/claude-papers/
@@ -210,9 +210,21 @@ npm run build
 
 No configuration required! The plugin uses sensible defaults:
 
-- **Papers directory**: `~/claude-papers/`
+- **Papers directory**: `~/claude-papers/` (can be overridden via `CLAUDE_PAPERS_DIR` environment variable)
 - **Web viewer port**: `5815`
 - **Content limit**: `50,000` characters (with intelligent truncation)
+
+To use a custom papers directory, set the `CLAUDE_PAPERS_DIR` environment variable:
+
+```bash
+# In your shell profile (~/.bashrc, ~/.zshrc, etc.)
+export CLAUDE_PAPERS_DIR=/your/custom/path
+
+# Or in a .env.local file in the web directory
+echo "CLAUDE_PAPERS_DIR=/your/custom/path" > plugins/claude-paper/src/web/.env.local
+```
+
+The `.env.local` file is already excluded from git via `.gitignore` for security.
 
 ### Advanced Customization
 

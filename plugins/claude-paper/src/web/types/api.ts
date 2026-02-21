@@ -34,10 +34,10 @@ export interface PaperMarkdownResponse {
 }
 
 /**
- * Home directory response
+ * Papers directory response
  */
-export interface HomeDirResponse {
-  homedir: string
+export interface PapersDirResponse {
+  papersDir: string
 }
 
 /**

@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
-import { homedir } from 'os'
 import type { ApiError } from '~/types/api'
+import { getPaperDir } from '~/utils/config'
 
 function getFileType(filename: string): string {
   const ext = path.extname(filename).toLowerCase()
@@ -100,7 +100,7 @@ export default defineEventHandler((event) => {
   }
 
   try {
-    const paperDir = path.join(homedir(), 'claude-papers/papers', slug)
+    const paperDir = getPaperDir(slug)
     const fullPath = path.join(paperDir, filePath)
 
     // Security: ensure the path is within the paper directory

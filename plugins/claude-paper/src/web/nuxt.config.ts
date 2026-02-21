@@ -9,6 +9,16 @@ export default defineNuxtConfig({
 
   modules: ['@nuxt/content'],
 
+  // Runtime config for environment variables
+  runtimeConfig: {
+    // Server-side only (private) - can use process.env
+    // Keys here are available via useRuntimeConfig()
+    public: {
+      // Client-side safe values
+      papersDir: process.env.CLAUDE_PAPERS_DIR || ''
+    }
+  },
+
   app: {
     head: {
       title: 'Claude Paper Library',
