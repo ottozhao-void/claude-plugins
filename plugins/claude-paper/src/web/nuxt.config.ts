@@ -9,14 +9,10 @@ export default defineNuxtConfig({
 
   modules: ['@nuxt/content'],
 
-  // Runtime config for environment variables
+  // Runtime config for server-side environment variables
   runtimeConfig: {
-    // Server-side only (private) - can use process.env
-    // Keys here are available via useRuntimeConfig()
-    public: {
-      // Client-side safe values
-      papersDir: process.env.CLAUDE_PAPERS_DIR || ''
-    }
+    // Private config - server-side only
+    // CLAUDE_PAPERS_DIR is read from .env files or environment
   },
 
   app: {
